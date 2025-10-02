@@ -33,12 +33,6 @@ app.get('/', (req, res) => {
 
   // ... reste du code
 });
-{
-  "dependencies": {
-    "express": "^4.18.2",
-    "applicationinsights": "^2.7.0"
-  }
-}
 app.get('/load-test', (req, res) => {
   // Simulation d'une charge
   const start = Date.now();
