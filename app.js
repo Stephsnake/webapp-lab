@@ -1,15 +1,12 @@
-// Modifier la version dans app.js
-app.get('/', (req, res) => {
-  res.send(`
-    <html>
-      <head><title>Azure App Service Lab</title></head>
-      <body style="font-family: Arial; text-align: center; padding: 50px; background: #f0f8ff;">
-        <h1>🚀 Azure App Service + GitHub Lab</h1>
-        <p>Version: 2.0 - Mise à jour automatique !</p>
-        <p>Déployé automatiquement depuis GitHub !</p>
-        <p>Timestamp: ${new Date().toISOString()}</p>
-        <p style="color: green;">✅ CI/CD fonctionne parfaitement !</p>
-      </body>
-    </html>
-  `);
+app.get('/api/info', (req, res) => {
+  res.json({
+    app: 'webapp-lab',
+    version: process.env.APP_VERSION || '1.0',
+    platform: process.platform,
+    nodeVersion: process.version,
+    environment: process.env.NODE_ENV || 'development',
+    customMessage: process.env.CUSTOM_MESSAGE || 'No custom message',
+    azureRegion: process.env.REGION_NAME,
+    instanceId: process.env.WEBSITE_INSTANCE_ID
+  });
 });
