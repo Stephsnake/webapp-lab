@@ -39,3 +39,22 @@ app.get('/', (req, res) => {
     "applicationinsights": "^2.7.0"
   }
 }
+app.get('/load-test', (req, res) => {
+  // Simulation d'une charge
+  const start = Date.now();
+
+  // CPU intensive task
+  let result = 0;
+  for (let i = 0; i < 1000000; i++) {
+    result += Math.sqrt(i);
+  }
+
+  const duration = Date.now() - start;
+
+  res.json({
+    message: 'Load test completed',
+    duration: `${duration}ms`,
+    result: Math.floor(result),
+    timestamp: new Date().toISOString()
+  });
+});
